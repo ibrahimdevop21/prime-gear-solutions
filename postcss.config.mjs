@@ -2,9 +2,9 @@
 // PostCSS configuration file
 const config = {
   plugins: {
-    // Include the @tailwindcss/postcss plugin for Tailwind CSS support
-    "@tailwindcss/postcss": {},
-     // Include the autoprefixer plugin for vendor prefixing
+    // Include the Tailwind CSS plugin
+    tailwindcss: {},
+    // Include the autoprefixer plugin for vendor prefixing
     autoprefixer: {}
   }
 };

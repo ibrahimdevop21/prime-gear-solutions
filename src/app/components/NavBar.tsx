@@ -2,167 +2,141 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FiMenu, FiX, FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
+import Image from 'next/image';
+import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-  // Equipment categories data
   const equipmentCategories = [
-    {
-      name: "Excavators",
-      subcategories: ["Mini Excavators", "Crawler Excavators", "Wheeled Excavators"]
-    },
-    {
-      name: "Loaders",
-      subcategories: ["Skid Steer", "Backhoe", "Wheel Loaders"]
-    },
-    {
-      name: "Bulldozers",
-      subcategories: ["Crawler Dozers", "Wheel Dozers"]
-    }
+    { name: 'Category 1', subcategories: ['Subcategory 1', 'Subcategory 2'] },
+    { name: 'Category 2', subcategories: ['Subcategory 3', 'Subcategory 4'] },
   ];
 
-  const services = [
-    "Equipment Maintenance",
-    "Fleet Optimization",
-    "Emergency Repairs"
-  ];
+  const services = ['Service 1', 'Service 2', 'Service 3'];
 
   return (
-    <nav className="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3">
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="text-xl font-bold">
-            <span className="text-orange-500">Prime</span>Gear
-          </Link>
-
-          {/* Main Navigation */}
-          <div className="flex items-center space-x-8">
-            {/* Equipment Dropdown */}
-            <div className="relative group">
-              <button 
-                className="flex items-center space-x-1 hover:text-orange-400 transition"
-                onClick={() => setOpenDropdown(openDropdown === 'equipment' ? null : 'equipment')}
-              >
-                <span>Equipment</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {openDropdown === 'equipment' && (
-                <div className="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg py-1 z-50">
-                  {equipmentCategories.map((category) => (
-                    <div key={category.name} className="relative submenu group">
-                      <Link 
-                        href={`/equipment/${category.name.toLowerCase()}`}
-                        className="block px-4 py-2 hover:bg-gray-700"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        <div className="flex justify-between items-center">
-                          <span>{category.name}</span>
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </div>
-                      </Link>
-                      <div className="absolute left-full top-0 ml-1 hidden group-hover:block bg-gray-800 rounded-md shadow-lg py-1 w-48">
-                        {category.subcategories.map((sub) => (
-                          <Link
-                            key={sub}
-                            href={`/equipment/${category.name.toLowerCase()}/${sub.toLowerCase().replace(/\s+/g, '-')}`}
-                            className="block px-4 py-2 hover:bg-gray-700 text-sm"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            {sub}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Parts Link */}
-            <Link href="/parts" className="hover:text-orange-400 transition">
-              Spare Parts
+    <nav className="bg-gradient-to-r from-secondary to-gray-900/80 backdrop-blur-lg text-white sticky top-0 z-50 shadow-lg">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo and Brand */}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/text-logo.png"
+                alt="Prime Gear Solutions"
+                width={100}
+                height={20}
+                priority
+                className="object-contain"
+              />
             </Link>
 
-            {/* Services Dropdown */}
-            <div className="relative">
-              <button 
-                className="flex items-center space-x-1 hover:text-orange-400 transition"
-                onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}
-              >
-                <span>Services</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {openDropdown === 'services' && (
-                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50">
-                  {services.map((service) => (
-                    <Link
-                      key={service}
-                      href={`/services/${service.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="block px-4 py-2 hover:bg-gray-700"
-                      onClick={() => setOpenDropdown(null)}
-                    >
-                      {service}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Contact Link */}
-            <Link href="/contact" className="hover:text-orange-400 transition">
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
+              href="/equipment"
+              className="group relative px-4 py-2 transition-all duration-200 hover:text-primary hover:scale-105"
+            >
+              Equipment
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+            </Link>
+            <Link
+              href="/services"
+              className="group relative px-4 py-2 transition-all duration-200 hover:text-primary hover:scale-105"
+            >
+              Services
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+            </Link>
+            <Link
+              href="/parts"
+              className="group relative px-4 py-2 transition-all duration-200 hover:text-primary hover:scale-105"
+            >
+              Parts
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+            </Link>
+            <Link
+              href="/about"
+              className="group relative px-4 py-2 transition-all duration-200 hover:text-primary hover:scale-105"
+            >
+              About
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+            </Link>
+            <Link
+              href="/contact"
+              className="group relative px-4 py-2 transition-all duration-200 hover:text-primary hover:scale-105"
+            >
               Contact
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </Link>
           </div>
 
-          {/* Right Side Icons */}
-          <div className="flex items-center space-x-6">
-            <button className="hover:text-orange-400 transition">
-              <FiSearch className="w-5 h-5" />
-            </button>
-            <button className="hover:text-orange-400 transition relative">
-              <FiShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-2 -right-2 bg-orange-500 text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                3
-              </span>
-            </button>
-            <button className="hover:text-orange-400 transition">
-              <FiUser className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Nav */}
-        <div className="md:hidden flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
-            <span className="text-orange-500">Prime</span>Gear
-          </Link>
-
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white focus:outline-none"
-          >
-            {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          {/* Mobile Menu Button */}
+          <button className="md:hidden p-2 hover:bg-neutral-100/20 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
           </button>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-gradient-to-b from-secondary to-gray-900/80 backdrop-blur-lg p-6">
+              <div className="space-y-6">
+                <Link 
+                  href="/equipment"
+                  className="block text-lg font-medium text-neutral-700 hover:text-primary transition-colors py-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Equipment
+                </Link>
+                <Link 
+                  href="/services"
+                  className="block text-lg font-medium text-neutral-700 hover:text-primary transition-colors py-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Services
+                </Link>
+                <Link 
+                  href="/parts"
+                  className="block text-lg font-medium text-neutral-700 hover:text-primary transition-colors py-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Parts
+                </Link>
+                <Link 
+                  href="/about"
+                  className="block text-lg font-medium text-neutral-700 hover:text-primary transition-colors py-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link 
+                  href="/contact"
+                  className="block text-lg font-medium text-neutral-700 hover:text-primary transition-colors py-3"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Accordion */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-gray-800 px-4 py-2">
-          <div className="flex flex-col space-y-3">
+        <div className="md:hidden absolute top-full left-0 w-full bg-secondary p-4">
+          <div className="space-y-4">
             {/* Equipment Accordion */}
             <div>
               <button 
