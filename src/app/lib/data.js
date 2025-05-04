@@ -7,6 +7,9 @@ export const equipmentCategories = [
 ];
 
 export const equipment = [
+  // Excavators
+
+  // CAT 320D Excavator
   {
     id: 1,
     name: "CAT 320D Excavator",
@@ -14,7 +17,7 @@ export const equipment = [
     serial: "CAT-320D-2020",
     category: "excavators",
     brand: "CAT",
-    image: "/equipment/cat-320d.jpg",
+    image: "/equipment/CAT-320D-2020.jpg",
     specs: {
       tonnage: "20 tons",
       enginePower: "260 hp",
@@ -39,6 +42,7 @@ export const equipment = [
       { date: "2024-01-15", description: "500-hour service completed" },
     ],
   },
+  // Komatsu PC200-10 Excavator
   {
     id: 2,
     name: "Komatsu PC200-10 Excavator",
@@ -46,7 +50,7 @@ export const equipment = [
     serial: "KOM-PC200-2021",
     category: "excavators",
     brand: "Komatsu",
-    image: "/equipment/komatsu-pc200.jpg",
+    image: "/equipment/KOM-PC200-2021.jpg",
     specs: {
       tonnage: "20 tons",
       enginePower: "249 hp",
@@ -67,6 +71,7 @@ export const equipment = [
       { date: "2024-02-01", description: "Engine oil change" },
     ],
   },
+  // Volvo EC240B Excavator
   {
     id: 3,
     name: "Volvo EC240B Excavator",
@@ -74,7 +79,7 @@ export const equipment = [
     serial: "VOL-EC240-2022",
     category: "excavators",
     brand: "Volvo",
-    image: "/equipment/volvo-ec240.jpg",
+    image: "/equipment/VOL-EC240-2022.jpg",
     specs: {
       tonnage: "24 tons",
       enginePower: "261 hp",
@@ -99,6 +104,7 @@ export const equipment = [
       { date: "2024-03-05", description: "Hydraulic system inspection" },
     ],
   },
+  // Loaders
   {
     id: 4,
     name: "CAT 988K Wheel Loader",
@@ -106,7 +112,7 @@ export const equipment = [
     serial: "CAT-988K-2023",
     category: "loaders",
     brand: "CAT",
-    image: "/equipment/cat-988k.jpg",
+    image: "/equipment/CAT-988K-2023.jpg",
     specs: {
       tonnage: undefined,
       enginePower: "450 hp",
@@ -134,14 +140,19 @@ export const equipment = [
   {
     id: 5,
     name: "Liebherr LTM 1120-5.1 Mobile Crane",
+    model: "LTM 1120-5.1",
+    serial: "LIE-LTM-2022",
     category: "cranes",
     brand: "Liebherr",
-    image: "/equipment/liebherr-ltm.jpg",
+    image: "/equipment/Brand: CAT.avif",
     specs: {
       maxLift: "120 tons",
       boomLength: "52m",
       year: 2022,
       attachments: ["Jib", "Counterweights"],
+      tonnage: undefined,
+      enginePower: undefined,
+      capacity: undefined,
     },
     type: "rental",
     rentalRate: {
@@ -149,6 +160,7 @@ export const equipment = [
       weekly: 16000,
       monthly: 60000,
     },
+    salePrice: undefined,
     availability: true,
     condition: "new",
     location: "Jeddah",
@@ -160,14 +172,19 @@ export const equipment = [
   {
     id: 6,
     name: "Hitachi ZW200-6 Wheel Loader",
+    model: "ZW200-6",
+    serial: "HIT-ZW200-2023",
     category: "loaders",
     brand: "Hitachi",
-    image: "/equipment/hitachi-loader.jpg",
+    image: "/equipment/Brand: CAT.avif",
     specs: {
       capacity: "12 tons",
       enginePower: "260 hp",
       year: 2023,
       attachments: ["Bucket", "Grapple"],
+      tonnage: undefined,
+      maxLift: undefined,
+      boomLength: undefined,
     },
     type: "rental",
     rentalRate: {
@@ -175,6 +192,7 @@ export const equipment = [
       weekly: 12000,
       monthly: 45000,
     },
+    salePrice: undefined,
     availability: true,
     condition: "new",
     location: "Riyadh",

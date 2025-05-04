@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+
 import EquipmentCard from './EquipmentCard';
 
 interface EquipmentGridProps {
@@ -53,25 +53,41 @@ export default function EquipmentGrid({ equipment, filters }: EquipmentGridProps
     const matchesBrand = !filters.brand || item.brand === filters.brand;
     const matchesCondition = !filters.condition || item.condition === filters.condition;
     const matchesLocation = !filters.location || item.location === filters.location;
-    const matchesPrice = 
-      (filters.type === 'rental' && item.rentalRate?.daily >= filters.priceRange[0] && item.rentalRate?.daily <= filters.priceRange[1]) ||
-      (filters.type === 'sale' && item.salePrice >= filters.priceRange[0] && item.salePrice <= filters.priceRange[1]) ||
-      (!filters.type && ((item.rentalRate?.daily >= filters.priceRange[0] && item.rentalRate?.daily <= filters.priceRange[1]) ||
-                       (item.salePrice >= filters.priceRange[0] && item.salePrice <= filters.priceRange[1])));
+    const matchesPrice = (item.type === 'rental' 
+      ? (item.rentalRate?.daily ?? 0) >= filters.priceRange[0] && (item.rentalRate?.daily ?? 0) <= filters.priceRange[1]
+      : (item.salePrice ?? 0) >= filters.priceRange[0] && (item.salePrice ?? 0) <= filters.priceRange[1]);
 
     return matchesType && matchesCategory && matchesBrand && matchesCondition && matchesLocation && matchesPrice;
   });
 
+  // Show loading state if equipment is empty
+  if (equipment.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+        <p className="text-gray-400 text-lg">Loading equipment...</p>
+      </div>
+    );
+  }
+
+  // Show empty state if no results found
+  if (filtered.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <div className="text-gray-400 text-4xl mb-4">🔍</div>
+        <h3 className="text-xl font-semibold mb-2">No Equipment Found</h3>
+        <p className="text-gray-400 text-center max-w-md">
+          No equipment matches your filters. Try adjusting your search criteria.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Browse Equipment</h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.map((item) => (
-          <EquipmentCard key={item.id} equipment={item} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {filtered.map((item) => (
+        <EquipmentCard key={item.id} equipment={item} />
+      ))}
     </div>
   );
 }

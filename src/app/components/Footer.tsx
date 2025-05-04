@@ -1,4 +1,18 @@
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+
+interface IconProps {
+  className?: string;
+  size?: number;
+}
+
+const FaFacebookIcon = FaFacebook as React.FC<IconProps>;
+const FaTwitterIcon = FaTwitter as React.FC<IconProps>;
+const FaLinkedinIcon = FaLinkedin as React.FC<IconProps>;
+const FaInstagramIcon = FaInstagram as React.FC<IconProps>;
+const FaPhoneIcon = FaPhone as React.FC<IconProps>;
+const FaEnvelopeIcon = FaEnvelope as React.FC<IconProps>;
+const FaMapMarkerAltIcon = FaMapMarkerAlt as React.FC<IconProps>;
+
 import Image from 'next/image';
 
 function Footer() {
@@ -18,21 +32,21 @@ function Footer() {
                 className="object-contain"
               />
               <p className="mb-4 text-gray-500">
-                Saudi Arabia's premier provider of heavy equipment rentals, parts, and maintenance services.
+                Saudi Arabia&apos;s premier provider of heavy equipment rentals, parts, and maintenance services.
               </p>
             </div>
             <div className="flex gap-6 mb-10">
               <a href="https://facebook.com/primegearsolutions" className="text-primary hover:text-white transition-colors">
-                <FaFacebook className="w-6 h-6" />
+                <FaFacebookIcon className="w-6 h-6" />
               </a>
               <a href="https://twitter.com/primegearsolutions" className="text-primary hover:text-white transition-colors">
-                <FaTwitter className="w-6 h-6" />
+                <FaTwitterIcon className="w-6 h-6" />
               </a>
               <a href="https://linkedin.com/company/primegearsolutions" className="text-primary hover:text-white transition-colors">
-                <FaLinkedin className="w-6 h-6" />
+                <FaLinkedinIcon className="w-6 h-6" />
               </a>
               <a href="https://instagram.com/primegearsolutions" className="text-primary hover:text-white transition-colors">
-                <FaInstagram className="w-6 h-6" />
+                <FaInstagramIcon className="w-6 h-6" />
               </a>
             </div>
             <div className="border-t border-gray-800 pt-6">
@@ -86,19 +100,19 @@ function Footer() {
             <h3 className="text-xl font-semibold mb-6">Quick Contact</h3>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <FaPhone className="w-5 h-5" />
+                <FaPhoneIcon className="w-6 h-6" />
                 <a href="tel:+9661234567" className="hover:text-white transition-colors">
                   +966 123 4567
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <FaEnvelope className="w-5 h-5" />
+                <FaEnvelopeIcon className="w-6 h-6" />
                 <a href="mailto:info@primegearsolutions.com" className="hover:text-white transition-colors">
                   info@primegearsolutions.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <FaMapMarkerAlt className="w-5 h-5" />
+                <FaMapMarkerAltIcon className="w-6 h-6" />
                 <span>Riyadh, Saudi Arabia</span>
               </div>
             </div>

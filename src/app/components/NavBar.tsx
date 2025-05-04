@@ -3,11 +3,21 @@
 import Link from "next/link";
 import { useState } from "react";
 import Image from 'next/image';
+import React from 'react';
 import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
+
+interface IconProps {
+  className?: string;
+  size?: number;
+}
+
+const FiSearchIcon = FiSearch as React.FC<IconProps>;
+const FiShoppingCartIcon = FiShoppingCart as React.FC<IconProps>;
+const FiUserIcon = FiUser as React.FC<IconProps>;
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const equipmentCategories = [
     { name: 'Category 1', subcategories: ['Subcategory 1', 'Subcategory 2'] },
@@ -224,16 +234,16 @@ export default function Navbar() {
 
             <div className="flex items-center space-x-4 pt-2 border-t border-gray-700">
               <button className="hover:text-orange-400">
-                <FiSearch className="w-5 h-5" />
+                <FiSearchIcon className="w-6 h-6" />
               </button>
               <button className="hover:text-orange-400 relative">
-                <FiShoppingCart className="w-5 h-5" />
+                <FiShoppingCartIcon className="w-6 h-6" />
                 <span className="absolute -top-2 -right-2 bg-orange-500 text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   3
                 </span>
               </button>
               <button className="hover:text-orange-400">
-                <FiUser className="w-5 h-5" />
+                <FiUserIcon className="w-6 h-6" />
               </button>
             </div>
           </div>

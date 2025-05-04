@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="bg-secondary text-white font-sans">
+      <body className="bg-secondary text-white font-sans" suppressHydrationWarning={true}>
         <div className="min-h-screen flex flex-col">
           <NavBar />
           <main className="flex-grow">
